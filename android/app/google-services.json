@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "210964410170",
+    "project_id": "ai-journal-6bcfe",
+    "storage_bucket": "ai-journal-6bcfe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210964410170:android:4a48e13e3f0232f46cea03",
+        "android_client_info": {
+          "package_name": "com.badar.aijournal.ai_journal_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbJnf0XhTLAA68f46Jf6MsVgFNLM7m8iI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210964410170:android:b586ea296f8123106cea03",
+        "android_client_info": {
+          "package_name": "com.tentwenty.assesment.tentwentyassesment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbJnf0XhTLAA68f46Jf6MsVgFNLM7m8iI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
