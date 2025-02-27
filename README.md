@@ -1,4 +1,4 @@
-# ai_journal_app
+# AI Journal Mobile App
 
 Ai journal app
 
