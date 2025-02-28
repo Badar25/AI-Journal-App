@@ -24,6 +24,20 @@ class Journal extends JournalEntity {
     };
   }
 
+  Journal copyWith({
+    String? id,
+    String? title,
+    String? content,
+    DateTime? date,
+  }) {
+    return Journal(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      content: content ?? this.content,
+      date: date ?? this.date,
+    );
+  }
+
   static seedSingleJournal() {
     return Journal(
       id: '1',

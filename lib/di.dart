@@ -13,7 +13,8 @@ import 'features/auth/presentation/controllers/login_controller.dart';
 import 'features/auth/presentation/controllers/signup_controller.dart';
 import 'features/journals/data/repositories/journal_repository_impl.dart';
 import 'features/journals/domain/usecases/create_journal_usecase.dart';
-import 'features/journals/domain/usecases/get_journal_usecase.dart';
+import 'features/journals/domain/usecases/delete_journal_usecase.dart';
+import 'features/journals/domain/usecases/update_journal_usecase.dart';
 import 'features/journals/presentation/controllers/create_journal_controller.dart';
 import 'features/journals/presentation/controllers/journals_controller.dart';
 
@@ -32,6 +33,7 @@ Future<void> initDependency() async {
   getIt.registerLazySingleton(() => SignupUseCase(getIt<AuthRepository>()));
   getIt.registerLazySingleton(() => CreateJournalUseCase(getIt<JournalRepository>()));
   getIt.registerLazySingleton(() => UpdateJournalUseCase(getIt<JournalRepository>()));
+  getIt.registerLazySingleton(() => DeleteJournalUseCase(getIt<JournalRepository>()));
 
   // Repositories
   getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(firebaseAuth: FirebaseAuth.instance));

@@ -15,14 +15,4 @@ class JournalsController extends BaseController {
     update();
   }
 
-  void removeJournal(Journal journal) {
-    journals.remove(journal);
-    update();
-  }
-
-  void updateJournal(Journal journal) {
-    final index = journals.indexWhere((element) => element.id == journal.id);
-    journals[index] = journal;
-    update();
-  }
 }

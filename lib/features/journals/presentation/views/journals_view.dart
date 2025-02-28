@@ -16,19 +16,21 @@ class _JournalsViewState extends State<JournalsView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<JournalsController>(builder: (controller) {
-      return ListView.builder(
-        itemCount: controller.journals.length,
-        itemBuilder: (context, index) {
-          final journal = controller.journals[index];
-          return CupertinoListTile(
-            onTap: () {
-              /// push as root navigator
-              Get.to(JournalDetailView(journal: journal));
-            },
-            title: Text(journal.title ?? '<No title>'),
-            subtitle: Text(journal.content ?? '<No content>'),
-          );
-        },
+      return CupertinoPageScaffold(
+        child: ListView.builder(
+          itemCount: controller.journals.length,
+          itemBuilder: (context, index) {
+            final journal = controller.journals[index];
+            return CupertinoListTile(
+              onTap: () {
+                /// push as root navigator
+                Get.to(JournalDetailView(journal: journal));
+              },
+              title: Text(journal.title ?? '<No title>'),
+              subtitle: Text(journal.content ?? '<No content>'),
+            );
+          },
+        ),
       );
     });
   }
