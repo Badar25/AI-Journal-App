@@ -35,7 +35,7 @@ class DioHelper {
             try {
               // Try to parse the error message from the response
               if (exception.response?.data != null) {
-                message = ErrorResponseBody.fromJson(exception.response?.data).error;
+                message = APIResponse.fromJson(exception.response?.data).message;
               }
             } catch (_) {
               // If error parsing fails, use a default message
@@ -43,8 +43,8 @@ class DioHelper {
             }
         }
 
-        if (exception.response?.data["message"] != null) {
-          message = exception.response?.data["message"];
+        if (exception.response?.data["error"] != null) {
+          message = exception.response?.data["error"];
         }
       }
 
