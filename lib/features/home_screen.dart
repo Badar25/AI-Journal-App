@@ -2,6 +2,7 @@ import 'package:ai_journal_app/features/chat/presentation/views/chat_screen.dart
 import 'package:ai_journal_app/features/journals/data/models/journal.dart';
 import 'package:ai_journal_app/features/journals/presentation/views/create_journal_view.dart';
 import 'package:ai_journal_app/features/journals/presentation/views/journals_view.dart';
+import 'package:ai_journal_app/features/settings/presentation/views/settings_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -70,9 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       case 0:
                         return JournalsView();
                       case 1:
-                        return Text('Settings');
+                        return SettingsScreen();
                       default:
-                        return const Center(child: Text('Journals'));
+                        return JournalsView();
                     }
                   },
                 );
