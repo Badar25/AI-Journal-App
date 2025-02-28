@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
 
 /// This interceptor logs request and response details
@@ -56,6 +57,7 @@ class ApiProviderTokenInterceptor extends Interceptor {
       final token = await user.getIdToken();
       if (token != null) {
         options.headers['Authorization'] = 'Bearer $token';
+        debugPrint('$token');
       }
     }
     handler.next(options);

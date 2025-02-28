@@ -16,3 +16,17 @@ String? dateFormatter(String date) {
   }
 
 }
+
+
+DateTime? formatTimestamp(double? timestamp) {
+  if (timestamp == null) return null;
+  try {
+    // Convert timestamp (seconds) to milliseconds
+    int millisecondsSinceEpoch = (timestamp * 1000).toInt();
+    DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
+
+  return dateTime;
+  } catch (_) {
+    return null;
+  }
+}

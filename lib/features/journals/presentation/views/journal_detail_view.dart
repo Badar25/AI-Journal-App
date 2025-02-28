@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '../../../../common/widget/app_buttons.dart';
+import '../../domain/usecases/delete_journal_usecase.dart';
+import '../../domain/usecases/update_journal_usecase.dart';
 import '../controllers/journal_detail_controller.dart';
 
 class JournalDetailView extends StatefulWidget {
@@ -79,8 +81,8 @@ class _JournalDetailViewState extends State<JournalDetailView> {
     return GetBuilder<JournalDetailController>(
       init: JournalDetailController(
         widget.journal,
-        updateUseCase: getIt(),
-        deleteUseCase: getIt(),
+        updateUseCase: getIt<UpdateJournalUseCase>(),
+        deleteUseCase: getIt<DeleteJournalUseCase>(),
       ),
       builder: (controller) {
         return Scaffold(

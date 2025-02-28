@@ -1,4 +1,5 @@
 import 'package:ai_journal_app/features/journals/domain/repositories/journal_repository.dart';
+import 'package:ai_journal_app/features/journals/domain/usecases/get_journals_usecase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
@@ -26,7 +27,7 @@ Future<void> initDependency() async {
   Get.lazyPut(() => LoginController(getIt<LoginUseCase>()), fenix: true);
   Get.lazyPut(() => SignUpController(getIt<SignupUseCase>()), fenix: true);
   Get.lazyPut(() => CreateJournalController(getIt<CreateJournalUseCase>()), fenix: true);
-  Get.lazyPut(() => JournalsController(), fenix: true);
+  Get.lazyPut(() => JournalsController(getJournalsUseCase: getIt<GetJournalsUseCase>()), fenix: true);
 
   // Use cases
   getIt.registerLazySingleton(() => LoginUseCase(getIt<AuthRepository>()));
@@ -34,6 +35,7 @@ Future<void> initDependency() async {
   getIt.registerLazySingleton(() => CreateJournalUseCase(getIt<JournalRepository>()));
   getIt.registerLazySingleton(() => UpdateJournalUseCase(getIt<JournalRepository>()));
   getIt.registerLazySingleton(() => DeleteJournalUseCase(getIt<JournalRepository>()));
+  getIt.registerLazySingleton(() => GetJournalsUseCase(getIt<JournalRepository>()));
 
   // Repositories
   getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(firebaseAuth: FirebaseAuth.instance));

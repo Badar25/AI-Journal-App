@@ -1,5 +1,7 @@
 import 'package:ai_journal_app/features/journals/domain/entities/journal_entity.dart';
 
+import '../../../../core/app_utils.dart';
+
 class Journal extends JournalEntity {
   Journal({
     required super.id,
@@ -13,7 +15,7 @@ class Journal extends JournalEntity {
       id: json['id'],
       title: json['title'],
       content: json['content'],
-      date: DateTime.tryParse(json['date']) ?? DateTime.now(),
+      date: formatTimestamp(json['date']) ?? DateTime.now(),
     );
   }
 
@@ -64,3 +66,4 @@ class Journal extends JournalEntity {
     ];
   }
 }
+
