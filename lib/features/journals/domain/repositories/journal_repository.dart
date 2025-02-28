@@ -7,7 +7,7 @@ abstract class JournalRepository {
 
   Future<Result<Journal>> getJournal(String id);
 
-  Future<Result<bool>> createJournal({String? title, String? content});
+  Future<Result<Journal>> createJournal({String? title, String? content});
 
   Future<Result<bool>> updateJournal({required String id, String? title, String? content});
 

@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 import '/di.dart';
@@ -29,14 +28,8 @@ class MyApp extends StatelessWidget {
     return ShadApp.custom(appBuilder: (ctx, theme) {
       return GetMaterialApp(
         title: 'AI Journal',
-        theme: theme.copyWith(textTheme: GoogleFonts.poppinsTextTheme(theme.textTheme)),
-        builder: (context, child) {
-          return MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: child!,
-          );
-        },
-        home: true ?? FirebaseAuth.instance.currentUser == null ? LoginView() : HomeScreen(),
+        theme: theme,
+        home: FirebaseAuth.instance.currentUser == null ? LoginView() : HomeScreen(),
       );
     });
   }

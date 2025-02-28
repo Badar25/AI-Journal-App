@@ -5,13 +5,20 @@ class AppPrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final bool isLoading;
+  final bool takeFullWidth;
 
-  const AppPrimaryButton({super.key, required this.text, required this.onPressed, required this.isLoading});
+  const AppPrimaryButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    required this.isLoading,
+    this.takeFullWidth = true,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ShadButton(
-      width: double.infinity,
+      width: takeFullWidth ? double.infinity : null,
       onPressed: onPressed,
       leading: isLoading
           ? SizedBox.square(

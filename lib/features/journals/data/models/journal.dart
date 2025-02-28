@@ -23,4 +23,30 @@ class Journal extends JournalEntity {
       'content': content,
     };
   }
+
+  static seedSingleJournal() {
+    return Journal(
+      id: '1',
+      title: 'Journal 1',
+      content: 'This is the content of journal 1',
+      date: DateTime.now(),
+    );
+  }
+
+  static List<Journal> seedMultipleJournals() {
+    return [
+      Journal(
+        id: '1',
+        title: 'Journal 1',
+        content: 'This is the content of journal 1',
+        date: DateTime.now(),
+      ),
+      Journal(
+        id: '2',
+        title: 'Journal 2',
+        content: 'This is the content of journal 2',
+        date: DateTime.now(),
+      ),
+    ];
+  }
 }

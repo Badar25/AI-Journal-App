@@ -32,7 +32,7 @@ class JournalRepositoryImpl implements JournalRepository {
   }
 
   @override
-  Future<Result<bool>> createJournal({String? title, String? content}) async {
+  Future<Result<Journal>> createJournal({String? title, String? content}) async {
     return _handleRequest(
       dioClient.post(
         ApiURL.createJournal,
@@ -41,7 +41,15 @@ class JournalRepositoryImpl implements JournalRepository {
           'content': content,
         },
       ),
-      (_) => true,
+      (data) {
+        final id = data["id"];
+        return Journal(
+          id: id,
+          title: title,
+          content: content,
+          date: DateTime.now(),
+        );
+      },
     );
   }
 
