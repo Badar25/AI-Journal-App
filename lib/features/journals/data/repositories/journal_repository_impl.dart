@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../common/network/error_response_body.dart';
 import '../../../../core/api_urls.dart';
+import '../../../../core/app_exceptions.dart';
 
 class JournalRepositoryImpl implements JournalRepository {
   final DioClient dioClient;
@@ -24,7 +25,7 @@ class JournalRepositoryImpl implements JournalRepository {
         if (parsedResponse.success) {
           return onSuccess(parsedResponse.data);
         } else {
-          throw Exception(parsedResponse.message);
+          throw CustomException(message: parsedResponse.message);
         }
       },
     );

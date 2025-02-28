@@ -39,4 +39,13 @@ class JournalsController extends BaseController {
     }
   }
 
+  void updateJournal(Journal journal) {
+    final index = journals.indexWhere((element) => element.id == journal.id);
+    if (index == -1) {
+      journals.add(journal);
+    } else {
+      journals[index] = journal;
+    }
+    update();
+  }
 }

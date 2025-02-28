@@ -34,6 +34,7 @@ class JournalDetailController extends BaseController {
     final result = await updateUseCase.call(params);
     setLoading(false);
     if (result.isSuccess) {
+      journal = journal.copyWith(content: content, title: title);
       toggleEditingMode();
       onSuccess();
     } else {

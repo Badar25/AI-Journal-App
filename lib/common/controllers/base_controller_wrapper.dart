@@ -4,7 +4,11 @@ abstract  class BaseController extends GetxController {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   void setLoading(bool value) {
+    if (value == true) {
+      _errorMessage = null;
+    }
     _isLoading = value;
+
     update();
   }
 
@@ -12,6 +16,12 @@ abstract  class BaseController extends GetxController {
   String? get errorMessage => _errorMessage;
   void setErrorMessage(String? value, {bool notify = false}) {
     _errorMessage = value;
+    update();
+  }
+
+  void resetState() {
+    _isLoading = false;
+    _errorMessage = null;
     update();
   }
 }

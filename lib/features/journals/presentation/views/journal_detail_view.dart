@@ -1,5 +1,6 @@
 import 'package:ai_journal_app/di.dart';
 import 'package:ai_journal_app/features/journals/data/models/journal.dart';
+import 'package:ai_journal_app/features/journals/presentation/controllers/journals_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +31,10 @@ class _JournalDetailViewState extends State<JournalDetailView> {
       JournalDetailController.to.updateJournal(
         title: _titleC.text,
         content: _contentC.text,
-        onSuccess: () {},
+        onSuccess: () {
+          /// update listview (parent view)
+          JournalsController.to.updateJournal(JournalDetailController.to.journal);
+        },
       );
     }
   }
@@ -95,7 +99,7 @@ class _JournalDetailViewState extends State<JournalDetailView> {
                     onPressed: controller.toggleEditingMode,
                   )
                 : null,
-            middle: Text(controller.isEditingMode ? 'Edit Journal' : '${widget.journal.title ?? 'Untitled'}'),
+            middle: Text(controller.isEditingMode ? 'Edit Journal' : '${controller.journal.title ?? 'Untitled'}'),
             trailing: controller.isEditingMode
                 ? AppTextButton(
                     text: 'Done',
@@ -123,17 +127,18 @@ class _JournalDetailViewState extends State<JournalDetailView> {
   }
 
   Widget _buildViewMode(JournalDetailController controller) {
+    bool isHavingTitle = controller.journal.title?.isNotEmpty ?? false;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 20),
-        SelectableText(
-          widget.journal.title ?? 'Untitled',
+       if(isHavingTitle) const SizedBox(height: 20),
+       if(isHavingTitle) SelectableText(
+          (controller.journal.title?.isEmpty ?? true) ? 'Untitled' : controller.journal.title ?? "",
           style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 20),
         SelectableText(
-          widget.journal.content ?? 'No content',
+          controller.journal.content ?? 'No content',
           style: const TextStyle(fontSize: 16),
         ),
       ],

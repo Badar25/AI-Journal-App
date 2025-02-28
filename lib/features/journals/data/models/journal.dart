@@ -15,7 +15,7 @@ class Journal extends JournalEntity {
       id: json['id'],
       title: json['title'],
       content: json['content'],
-      date: formatTimestamp(json['date']) ?? DateTime.now(),
+      date: formatTimestamp(json['createdAt']) ?? DateTime.now(),
     );
   }
 

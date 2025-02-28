@@ -16,6 +16,7 @@ class CreateJournalController extends BaseController {
   Journal? newJournal;
 
   Future<void> createJournal(String title, String content, VoidCallback onSuccess) async {
+    resetState();
     setLoading(true);
     try {
       final params = CreateJournalParams(title: title, content: content);
@@ -26,11 +27,10 @@ class CreateJournalController extends BaseController {
         newJournal = result.data;
         onSuccess();
       } else {
-        setErrorMessage(result.error);
+        setErrorMessage(result.error, notify: true);
       }
-    } catch (_, st) {
-      debugPrint(st.toString());
-      setErrorMessage("Failed to create journal");
+    } catch (err, st) {
+      setErrorMessage('An error occurred');
     } finally {
       setLoading(false);
     }
