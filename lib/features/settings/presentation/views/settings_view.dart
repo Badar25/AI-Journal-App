@@ -79,7 +79,7 @@ class SettingsScreenState extends State<SettingsScreen> with LoadingStateMixin {
     await withLoading(() async {
       await _auth.signOut();
       Navigator.of(context).popUntil((route) => route.isFirst);
-      Navigator.push(context, CupertinoPageRoute(builder: (context) => const LoginView()));
+      Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => const LoginView()));
     });
   }
 
