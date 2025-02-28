@@ -1,3 +1,4 @@
+import 'package:ai_journal_app/features/chat/presentation/views/chat_screen.dart';
 import 'package:ai_journal_app/features/journals/data/models/journal.dart';
 import 'package:ai_journal_app/features/journals/presentation/views/create_journal_view.dart';
 import 'package:ai_journal_app/features/journals/presentation/views/journals_view.dart';
@@ -31,11 +32,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar:   CupertinoNavigationBar(
+        leading: GestureDetector(
+          onTap: () => Get.to(() => SummarizeView()),
+          child: Icon(CupertinoIcons.wand_rays, size: 20),
+        ),
         middle: Text('AI Journal'),
         backgroundColor: CupertinoColors.inactiveGray,
         trailing: GestureDetector(
-            onTap: ()=>Get.to(()=>SummarizeView()),
-            child: Icon(CupertinoIcons.wand_rays, size: 20,)),
+            onTap: ()=>Get.to(()=>ChatScreen()),
+          child: Icon(
+            CupertinoIcons.chat_bubble,
+            size: 20,
+          ),
+        ),
       ),
       child: SafeArea(
         child: Stack(
@@ -46,13 +55,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 items: const <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
                     icon: Icon(CupertinoIcons.book),
-                    activeIcon: Icon(CupertinoIcons.book_solid),
                     label: 'Journals',
                   ),
                   BottomNavigationBarItem(
-                    icon: Icon(CupertinoIcons.chat_bubble),
-                    activeIcon: Icon(CupertinoIcons.chat_bubble_fill),
-                    label: 'Chat',
+                    icon: Icon(CupertinoIcons.settings),
+                    label: 'Settings',
                   ),
                 ],
               ),
@@ -63,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       case 0:
                         return JournalsView();
                       case 1:
-                        return const Center(child: Text('Chat'));
+                        return Text('Settings');
                       default:
                         return const Center(child: Text('Journals'));
                     }

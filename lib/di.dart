@@ -1,3 +1,5 @@
+import 'package:ai_journal_app/features/chat/data/repositories/chat_repository_impl.dart';
+import 'package:ai_journal_app/features/chat/domain/repositories/chat_repository.dart';
 import 'package:ai_journal_app/features/journals/domain/repositories/journal_repository.dart';
 import 'package:ai_journal_app/features/journals/domain/usecases/get_journals_usecase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +14,7 @@ import 'features/auth/domain/usecases/login_usecase.dart';
 import 'features/auth/domain/usecases/signup_usecase.dart';
 import 'features/auth/presentation/controllers/login_controller.dart';
 import 'features/auth/presentation/controllers/signup_controller.dart';
+import 'features/chat/domain/usecases/send_message_usecase.dart';
 import 'features/journals/data/repositories/journal_repository_impl.dart';
 import 'features/journals/domain/usecases/create_journal_usecase.dart';
 import 'features/journals/domain/usecases/delete_journal_usecase.dart';
@@ -38,10 +41,12 @@ Future<void> initDependency() async {
   getIt.registerLazySingleton(() => DeleteJournalUseCase(getIt<JournalRepository>()));
   getIt.registerLazySingleton(() => GetJournalsUseCase(getIt<JournalRepository>()));
   getIt.registerLazySingleton(() => SummarizeJournalsUseCase(getIt<JournalRepository>()));
+  getIt.registerLazySingleton(() => SendMessageUseCase(getIt<ChatRepository>()));
 
   // Repositories
   getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(firebaseAuth: FirebaseAuth.instance));
   getIt.registerLazySingleton<JournalRepository>(() => JournalRepositoryImpl(dioClient: getIt<DioClient>()));
+  getIt.registerLazySingleton<ChatRepository>(() => ChatRepositoryImpl(dioClient: getIt<DioClient>()));
 
   // Dio
   getIt.registerLazySingleton<DioClient>(() => DioClient());
