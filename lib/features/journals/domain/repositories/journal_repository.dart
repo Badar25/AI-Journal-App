@@ -12,4 +12,6 @@ abstract class JournalRepository {
   Future<Result<bool>> updateJournal({required String id, String? title, String? content});
 
   Future<Result<bool>> deleteJournal(String id);
+
+  Future<Result<String>> summarizeJournal();
 }

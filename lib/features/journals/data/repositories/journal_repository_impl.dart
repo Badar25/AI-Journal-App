@@ -91,4 +91,12 @@ class JournalRepositoryImpl implements JournalRepository {
       (_) => true,
     );
   }
+
+  @override
+  Future<Result<String>> summarizeJournal() {
+    return _handleRequest(
+      dioClient.get(ApiURL.summary),
+      (data) => data['response'],
+    );
+  }
 }

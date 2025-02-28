@@ -2,8 +2,10 @@ import 'package:ai_journal_app/features/journals/data/models/journal.dart';
 import 'package:ai_journal_app/features/journals/presentation/views/create_journal_view.dart';
 import 'package:ai_journal_app/features/journals/presentation/views/journals_view.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 import 'journals/presentation/controllers/journals_controller.dart';
+import 'journals/presentation/views/summarize_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,9 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
+      navigationBar:   CupertinoNavigationBar(
         middle: Text('AI Journal'),
         backgroundColor: CupertinoColors.inactiveGray,
+        trailing: GestureDetector(
+            onTap: ()=>Get.to(()=>SummarizeView()),
+            child: Icon(CupertinoIcons.wand_rays, size: 20,)),
       ),
       child: SafeArea(
         child: Stack(
