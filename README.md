@@ -134,6 +134,6 @@ flutter run
 
 This application consists of two parts:
 - Frontend (Current repository): Flutter mobile application
-- Backend: [AI Journal Backend]([https://github.com/Badar25/Journal-backend])
+- Backend: [AI Journal Backend]([https://github.com/Badar25/Journal-backend]) - https://github.com/Badar25/Journal-backend
 
 Please ensure you have both repositories set up for full functionality.
