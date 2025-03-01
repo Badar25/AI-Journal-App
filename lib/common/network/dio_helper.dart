@@ -1,3 +1,4 @@
+import 'package:ai_journal_app/core/app_exceptions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -17,8 +18,8 @@ class DioHelper {
       return Result.success(map(response.data));
     } catch (exception, stacktrace) {
       // Log the error and stacktrace for debugging
-      debugPrint('API Error: ${exception.toString()}');
-      debugPrint('Stacktrace: ${stacktrace.toString()}');
+      debugPrint('API Error: ${exception.toString()} type: ${exception.runtimeType}');
+      // debugPrint('Stacktrace: ${stacktrace.toString()}');
 
       String? message;
 
@@ -35,7 +36,7 @@ class DioHelper {
             try {
               // Try to parse the error message from the response
               if (exception.response?.data != null) {
-                message = ErrorResponseBody.fromJson(exception.response?.data).error;
+                message = APIResponse.fromJson(exception.response?.data).message;
               }
             } catch (_) {
               // If error parsing fails, use a default message
@@ -43,9 +44,13 @@ class DioHelper {
             }
         }
 
-        if (exception.response?.data["message"] != null) {
-          message = exception.response?.data["message"];
+        if (exception.response?.data["error"] != null) {
+          message = exception.response?.data["error"];
         }
+      }
+
+      if(exception is CustomException) {
+        message = exception.message;
       }
 
       return Result.failure(message ?? 'Something went wrong');
